@@ -1,3 +1,4 @@
+import { IFilme } from '../models/IFilme.model';
 import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
@@ -8,6 +9,28 @@ import { AlertController, ToastController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+
+  titulo = 'Vídeos';
+
+  listaVideos: IFilme[] = [
+    {
+      nome: 'Jurassic World: Domínio (2022)',
+      lancamento: '02/06/2022',
+      duracao: '2h 27m',
+      classificacao: 76,
+      cartaz: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/w6Jz1AgjscqBuS8qXBd0wUHz5zC.jpg',
+      generos: ['Aventura', 'Ação', 'Ficção científica']
+    },
+    {
+      nome:'Mortal Kombat (2021)',
+      lancamento: '15/04/2021',
+      duracao: '1h 50m',
+      classificacao: 72,
+      cartaz: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/44aCR6cjH0FbzW6PMw3Ega178iW.jpg',
+      generos: ['Ação', 'Fantasia', 'Aventura']
+    }
+  ];
+
 
   constructor(private alertController: AlertController, private toastController: ToastController) { }
 

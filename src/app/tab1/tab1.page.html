@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="dark">
-    <ion-title> Videos App </ion-title>
+    <ion-title> {{ titulo }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,21 +8,19 @@
   <ion-searchbar placeholder="Buscar"></ion-searchbar>
 
   <ion-list>
-
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let filme of listaVideos">
       <ion-item lines="full">
         <ion-thumbnail slot="start">
-          <img
-            alt="Predador 2022"
-            src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/w6Jz1AgjscqBuS8qXBd0wUHz5zC.jpg"
-          />
+          <img alt="Predador 2022" [src]="filme.cartaz" />
         </ion-thumbnail>
 
         <ion-label class="ion-text-wrap">
           <div>
-            <h1>Jurassic World: Domínio (2022)</h1>
-            <p>02/06/2022 (BR) - 2h 27m</p>
-            <p>Aventura, Ação, Ficção científica</p>
+            <h1>{{ filme.nome }}</h1>
+            <p>{{ filme.lancamento }} - {{ filme.duracao }}</p>
+            <ion-badge color="light" *ngFor="let genero of filme.generos"
+              >{{genero}}</ion-badge
+            >
           </div>
         </ion-label>
 
@@ -32,43 +30,10 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option color="laranja" (click) = "exibirAlertaFavorito()">
+        <ion-item-option color="laranja" (click)="exibirAlertaFavorito()">
           <ion-icon slot="icon-only" name="star"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item lines="full">
-        <ion-thumbnail slot="start">
-          <img
-            alt="MK 2021"
-            src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/44aCR6cjH0FbzW6PMw3Ega178iW.jpg"
-          />
-        </ion-thumbnail>
-
-        <ion-label class="ion-text-wrap">
-          <div>
-            <h1>Mortal Kombat (2021)</h1>
-            <p>
-              15/04/2021 (BR)
-               - 1h 50m</p>
-            <p>Ação, Fantasia, Aventura
-              1h 50m</p>
-          </div>
-        </ion-label>
-
-        <ion-chip color="success" outline>
-          <ion-label>72%</ion-label>
-        </ion-chip>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option color="laranja" (click) = "exibirAlertaFavorito()">
-          <ion-icon slot="icon-only" name="star"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
   </ion-list>
 </ion-content>
