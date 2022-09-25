@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab1',
@@ -8,7 +9,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page {
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController, private toastController: ToastController) { }
 
 
   async exibirAlertaFavorito() {
@@ -25,7 +26,7 @@ export class Tab1Page {
         }, {
           text: 'SIM, favoritar',
           handler: () => {
-            console.log('Confirm Okay');
+            this.apresentarToast();
           }
         }
       ]
@@ -33,6 +34,17 @@ export class Tab1Page {
 
     await alert.present();
   }
+
+  async apresentarToast() {
+    const toast = await this.toastController.create({
+      message: 'Filme adicionado aos favoritos.',
+      duration: 1500,
+      color: 'success'
+    });
+
+    await toast.present();
+  }
+
 }
 
 /*
