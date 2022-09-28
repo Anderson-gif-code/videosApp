@@ -1,6 +1,8 @@
 import { IFilme } from '../models/IFilme.model';
 import { Component } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { DadosService } from '../services/dados.service';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +21,8 @@ export class Tab1Page {
       duracao: '2h 27m',
       classificacao: 76,
       cartaz: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/w6Jz1AgjscqBuS8qXBd0wUHz5zC.jpg',
-      generos: ['Aventura', 'Ação', 'Ficção científica']
+      generos: ['Aventura', 'Ação', 'Ficção científica'],
+      pagina: '/jurassic-world'
     },
     {
       nome:'Mortal Kombat (2021)',
@@ -27,12 +30,22 @@ export class Tab1Page {
       duracao: '1h 50m',
       classificacao: 72,
       cartaz: 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/44aCR6cjH0FbzW6PMw3Ega178iW.jpg',
-      generos: ['Ação', 'Fantasia', 'Aventura']
+      generos: ['Ação', 'Fantasia', 'Aventura'],
+      pagina: '/mortal-kombat'
     }
   ];
 
 
-  constructor(private alertController: AlertController, private toastController: ToastController) { }
+  constructor(
+    public alertController: AlertController,
+    public toastController: ToastController,
+    public dadosService: DadosService,
+    public route: Router) { }
+
+    exibirFilme(filme: IFilme){
+      this.dadosService.guardarDados('filme', filme);
+      this.route.navigateByUrl('/dados-filme');
+    }
 
 
   async exibirAlertaFavorito() {

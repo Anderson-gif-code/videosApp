@@ -9,9 +9,9 @@
 
   <ion-list>
     <ion-item-sliding *ngFor="let filme of listaVideos">
-      <ion-item lines="full">
+      <ion-item lines="full" (click) = "exibirFilme(filme)">
         <ion-thumbnail slot="start">
-          <img alt="Predador 2022" [src]="filme.cartaz" />
+          <img [src]="filme.cartaz" />
         </ion-thumbnail>
 
         <ion-label class="ion-text-wrap">
